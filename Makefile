@@ -1,24 +1,38 @@
-APP := web
-RUN := docker-compose run --rm 
-ENV := development
+app := web
+run := docker-compose run --rm 
+env := development
+spec := spec
 
-install_gems:
-	$(RUN) --entrypoint='' $(APP) bundle install
+run:
+	$(run) $(app) $(c)
+
+fix_permissions:
+	sudo chown -R $$USER:$$USER .
 
 server_up:
 	docker-compose up
 
-show_console:
-	$(RUN) $(APP) rails c -e $(ENV)
+install_gems:
+	$(run) --entrypoint='' $(app) bundle install
+
+open_console:
+	$(run) $(app) rails c -e $(env)
+
+run_tests:
+	$(run) $(app) rspec $(spec)
 
 migrate_db:
-	$(RUN) $(APP) rake db:migrate
+	$(run) $(app) rake db:migrate
 
 create_db:
-	$(RUN) $(APP) rake db:create
+	$(run) $(app) rake db:create
 
 drop_db:
-	$(RUN) $(APP) rake db:drop
+	$(run) $(app) rake db:drop
 
-run:
-	$(RUN) $(APP) $(c)
+generate_model:
+	$(run) $(app) rails g model $(m)
+	make fix_permissions
+
+destroy_model:
+	$(run) $(app) rails d model $(m)
