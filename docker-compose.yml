@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:9.5"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      
+  web:
+    depends_on:
+      - "postgres"
+    build: .
+    command: bash start.sh
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/farma_alg
+      - app-gems:/app-gems
+
+volumes:
+  postgres:
+  app-gems:
