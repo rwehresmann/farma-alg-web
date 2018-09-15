@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_173847) do
+ActiveRecord::Schema.define(version: 2018_09_15_182135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2018_09_15_173847) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_exercises_on_user_id"
+  end
+
+  create_table "question_lists", force: :cascade do |t|
+    t.bigint "question_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_question_lists_on_exercise_id"
+    t.index ["question_id", "exercise_id"], name: "index_question_lists_on_question_id_and_exercise_id", unique: true
+    t.index ["question_id"], name: "index_question_lists_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -52,6 +62,8 @@ ActiveRecord::Schema.define(version: 2018_09_15_173847) do
   end
 
   add_foreign_key "exercises", "users"
+  add_foreign_key "question_lists", "exercises"
+  add_foreign_key "question_lists", "questions"
   add_foreign_key "questions", "users"
   add_foreign_key "test_cases", "questions"
 end
