@@ -3,8 +3,10 @@ class Question < ApplicationRecord
 
   has_many :test_cases
 
-  validates_presence_of(
-    :title, 
-    :description
+  validates_presence_of :title   
+  validates(
+    :description, 
+    presence: true, 
+    length: { minimum: 20 }
   )
 end
