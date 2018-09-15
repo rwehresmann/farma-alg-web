@@ -18,7 +18,7 @@ install_gems:
 open_console:
 	$(run) $(app) rails c -e $(env)
 
-run_tests:
+test:
 	$(run) $(app) rspec $(spec)
 
 migrate_db:
@@ -29,6 +29,9 @@ create_db:
 
 drop_db:
 	$(run) $(app) rake db:drop
+
+rollback_last_migration:
+	$(run) $(app) rake db:rollback STEP=1
 
 generate_model:
 	$(run) $(app) rails g model $(m)
