@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_183356) do
+ActiveRecord::Schema.define(version: 2018_09_16_183809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2018_09_16_183356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "team_exercise_programming_languages", force: :cascade do |t|
+    t.bigint "team_exercise_id"
+    t.bigint "programming_language_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["programming_language_id"], name: "index_tepl_on_programming_language_id"
+    t.index ["team_exercise_id", "programming_language_id"], name: "index_tepl_on_team_exercise_id_and_programming_language_id", unique: true
+    t.index ["team_exercise_id"], name: "index_tepl_on_team_exercise_id"
   end
 
   create_table "team_exercises", force: :cascade do |t|
@@ -104,6 +114,8 @@ ActiveRecord::Schema.define(version: 2018_09_16_183356) do
   add_foreign_key "question_lists", "exercises"
   add_foreign_key "question_lists", "questions"
   add_foreign_key "questions", "users"
+  add_foreign_key "team_exercise_programming_languages", "programming_languages"
+  add_foreign_key "team_exercise_programming_languages", "team_exercises"
   add_foreign_key "team_exercises", "exercises"
   add_foreign_key "team_exercises", "teams"
   add_foreign_key "team_users", "teams"
