@@ -3,6 +3,8 @@ class Team < ApplicationRecord
 
   has_many :team_exercises
   has_many :exercises, through: :team_exercises
+  has_many :team_users
+  has_many :users, through: :team_users
 
   validates_presence_of :name
   validates :password, presence: true, length: { minimum: 6 }

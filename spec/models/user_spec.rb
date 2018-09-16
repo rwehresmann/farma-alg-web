@@ -4,6 +4,8 @@ RSpec.describe User, type: :model do
   it { should have_many(:questions) }
   it { should have_many(:exercises) }
   it { should have_many(:teams) }
+  it { should have_many(:team_users) }
+  it { should have_many(:teams).through(:team_users) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:last_name) }

@@ -5,6 +5,8 @@ RSpec.describe Team, type: :model do
   
   it { should have_many(:team_exercises) }
   it { should have_many(:exercises).through(:team_exercises) }
+  it { should have_many(:team_users) }
+  it { should have_many(:users).through(:team_users) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:password) }
