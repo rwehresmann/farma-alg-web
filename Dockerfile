@@ -1,7 +1,8 @@
 FROM ruby:2.5.1-slim
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
-build-essential nodejs libpq-dev imagemagick git-all
+build-essential nodejs libpq-dev imagemagick git-all cmake pkg-config \
+libcurl3 openssl
 
 ENV INSTALL_PATH /farma_alg
 
