@@ -4,6 +4,7 @@ RSpec.describe Question, type: :model do
   it { should belong_to(:user) }
   
   it { should have_many(:test_cases) }
+  it { should have_many(:answers) }
   it { should have_many(:question_lists) }
   it { should have_many(:exercises).through(:question_lists) }
 

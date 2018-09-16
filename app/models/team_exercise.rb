@@ -2,6 +2,7 @@ class TeamExercise < ApplicationRecord
   belongs_to :team
   belongs_to :exercise
   
+  has_many :answers
   has_many :team_exercise_programming_languages
   has_many :programming_languages, through: :team_exercise_programming_languages
 

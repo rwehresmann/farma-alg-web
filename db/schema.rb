@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_183809) do
+ActiveRecord::Schema.define(version: 2018_09_16_190942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content", null: false
+    t.boolean "correct", default: false, null: false
+    t.bigint "team_exercise_id"
+    t.bigint "question_id"
+    t.bigint "user_id"
+    t.bigint "programming_language_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["programming_language_id"], name: "index_answers_on_programming_language_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["team_exercise_id"], name: "index_answers_on_team_exercise_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.string "title", null: false
@@ -110,6 +125,10 @@ ActiveRecord::Schema.define(version: 2018_09_16_183809) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "answers", "programming_languages"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "team_exercises"
+  add_foreign_key "answers", "users"
   add_foreign_key "exercises", "users"
   add_foreign_key "question_lists", "exercises"
   add_foreign_key "question_lists", "questions"

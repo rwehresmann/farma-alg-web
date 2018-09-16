@@ -4,6 +4,7 @@ RSpec.describe TeamExercise, type: :model do
   it { should belong_to(:team) }
   it { should belong_to(:exercise) }
 
+  it { should have_many(:answers) }
   it { should have_many(:team_exercise_programming_languages) }
   it { should have_many(:programming_languages).through(:team_exercise_programming_languages) }
 
