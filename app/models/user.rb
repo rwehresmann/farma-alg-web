@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify
+  
   has_many :questions
   has_many :exercises
   has_many :answers
