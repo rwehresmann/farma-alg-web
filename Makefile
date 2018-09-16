@@ -18,6 +18,9 @@ install_gems:
 open_console:
 	$(run) $(app) rails c -e $(env)
 
+open_sandbox_console:
+	$(run) $(app) rails c -e $(env) --sandbox
+
 test:
 	$(run) $(app) rspec $(spec)
 
