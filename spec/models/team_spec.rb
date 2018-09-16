@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Team, type: :model do
   it { belong_to(:user) }
+  
+  it { should have_many(:team_exercises) }
+  it { should have_many(:exercises).through(:team_exercises) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:password) }
