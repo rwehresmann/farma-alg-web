@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   rolify
+  has_secure_password
   
   has_many :questions
   has_many :exercises

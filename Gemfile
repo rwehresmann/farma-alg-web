@@ -15,6 +15,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors'
 # Roles management
 gem 'rolify'
+# JWT authentication
+gem 'knock'
 
 group :development, :test do
   # Our test framework
