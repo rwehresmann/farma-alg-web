@@ -17,6 +17,8 @@ gem 'rack-cors'
 gem 'rolify'
 # JWT authentication
 gem 'knock'
+# Handle authorization policies
+gem 'pundit'
 
 group :development, :test do
   # Our test framework
