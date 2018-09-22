@@ -19,6 +19,8 @@ gem 'rolify'
 gem 'knock'
 # Handle authorization policies
 gem 'pundit'
+# Object serialization
+gem 'fast_jsonapi'
 
 group :development, :test do
   # Our test framework
