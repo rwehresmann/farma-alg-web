@@ -42,3 +42,13 @@ generate_model:
 
 destroy_model:
 	$(run) $(app) rails d model $(m)
+
+generate_controller:
+	$(run) $(app) rails g controller $(c) --no-controller-specs
+	make fix_permissions
+
+destroy_controller:
+	$(run) $(app) rails d controller $(c)
+
+show_routes:
+	$(run) $(app) rake routes $(f)
