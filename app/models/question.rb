@@ -12,4 +12,8 @@ class Question < ApplicationRecord
     presence: true, 
     length: { minimum: 20 }
   )
+
+  def in_exercises?
+    exercises.count > 0
+  end
 end

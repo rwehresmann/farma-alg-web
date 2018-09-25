@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       post 'user_token', to: 'user_token#create'
     
       resources :exercises
-      resources :questions
+      resources :questions do
+        resources :test_cases, shallow: true
+      end
     end
   end
 end

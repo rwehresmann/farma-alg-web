@@ -7,6 +7,11 @@ class TestCasePolicy < QuestionPolicy
     question_belongs_to_user?
   end
 
+  # TODO: discover how to inform custom error message here.
+  # "Test case question is already present in an exercise \
+  # and currently is the unique test case of this question. \
+  # To delete it you need first (1) include a second test case for \
+  # the question or (2) remove its question from any exercise."
   def destroy?
     return false unless question_belongs_to_user?
     return true unless @question.in_exercises?
@@ -20,10 +25,3 @@ class TestCasePolicy < QuestionPolicy
     @question.test_cases.count == 1
   end
 end
-
-=begin
-      "Test case question is already present in an exercise \
-      and currently is the unique test case of this question. \
-      To delete it you need first (1) include a second test case for \
-      the question or (2) remove its question from any exercise."
-=end
