@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  resourcify
+  
   belongs_to :user
 
   has_many :team_exercises

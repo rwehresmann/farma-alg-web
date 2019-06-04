@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :exercises
   has_many :answers
+  has_many :created_teams, class_name: :Team
   has_many :team_users
   has_many :teams, through: :team_users
 
