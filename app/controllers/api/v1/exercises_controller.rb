@@ -56,10 +56,6 @@ module Api
       def find_exercise
         Exercise.find(params[:id])
       end
-
-      def serialize(exercises)
-        ExerciseSerializer.new(exercises)
-      end
     end
   end
 end

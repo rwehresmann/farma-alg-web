@@ -54,10 +54,6 @@ module Api
       def find_question
         Question.find(params[:id])
       end
-
-      def serialize(questions)
-        QuestionSerializer.new(questions)
-      end
     end
   end
 end

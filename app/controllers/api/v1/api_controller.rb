@@ -12,6 +12,12 @@ module Api
       def error_structure(error)
         ErrorStructure.build(error)
       end
+
+      def serialize(data)
+        name = self.class.to_s.split('::').last.remove('Controller').singularize
+
+        "#{name}Serializer".constantize.new(data)
+      end
     end
   end
 end

@@ -8,7 +8,7 @@ module Api
 
         try_authorize!(question)
 
-        render json: build_serializer(question.test_cases)
+        render json: serialize(question.test_cases)
       end
 
       def create
@@ -32,7 +32,7 @@ module Api
 
         try_authorize!(test_case.question)
 
-        render json: build_serializer(test_case)
+        render json: serialize(test_case)
       end
 
       def update
@@ -66,10 +66,6 @@ module Api
 
       def find_question
         Question.find(params[:question_id])
-      end
-
-      def build_serializer(test_cases)
-        TestCaseSerializer.new(test_cases)
       end
 
       # Don't know why, but if I don't especify `policy_class`, it's getting 

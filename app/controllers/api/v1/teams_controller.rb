@@ -45,10 +45,6 @@ module Api
       def find_team
         Team.find(params[:id])
       end
-
-      def serialize(teams)
-        TeamSerializer.new(teams)
-      end
     end
   end
 end
