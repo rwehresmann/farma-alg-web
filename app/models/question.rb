@@ -3,8 +3,8 @@ class Question < ApplicationRecord
 
   has_many :test_cases
   has_many :answers
-  has_many :question_lists
-  has_many :exercises, through: :question_lists
+  has_many :exercise_questions
+  has_many :exercises, through: :exercise_questions
 
   validates_presence_of :title   
   validates(

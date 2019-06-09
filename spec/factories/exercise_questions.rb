@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :question_list do
+  factory :exercise_question do
     question
     exercise
   end

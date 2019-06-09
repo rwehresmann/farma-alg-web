@@ -1,4 +1,4 @@
-class QuestionList < ApplicationRecord
+class ExerciseQuestion < ApplicationRecord
   belongs_to :question
   belongs_to :exercise
 

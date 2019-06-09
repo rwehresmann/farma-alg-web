@@ -1,6 +1,6 @@
-class CreateQuestionLists < ActiveRecord::Migration[5.2]
+class CreateExerciseQuestions < ActiveRecord::Migration[5.2]
   def change
-    create_table :question_lists do |t|
+    create_table :exercise_questions do |t|
       t.references :question, index: true, foreign_key: true
       t.references :exercise, index: true, foreign_key: true
 

@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2018_09_16_214721) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "exercise_questions", force: :cascade do |t|
+    t.bigint "question_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercise_questions_on_exercise_id"
+    t.index ["question_id", "exercise_id"], name: "index_exercise_questions_on_question_id_and_exercise_id", unique: true
+    t.index ["question_id"], name: "index_exercise_questions_on_question_id"
+  end
+
   create_table "exercises", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -44,16 +54,6 @@ ActiveRecord::Schema.define(version: 2018_09_16_214721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_programming_languages_on_name"
-  end
-
-  create_table "question_lists", force: :cascade do |t|
-    t.bigint "question_id"
-    t.bigint "exercise_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exercise_id"], name: "index_question_lists_on_exercise_id"
-    t.index ["question_id", "exercise_id"], name: "index_question_lists_on_question_id_and_exercise_id", unique: true
-    t.index ["question_id"], name: "index_question_lists_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -148,9 +148,9 @@ ActiveRecord::Schema.define(version: 2018_09_16_214721) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "team_exercises"
   add_foreign_key "answers", "users"
+  add_foreign_key "exercise_questions", "exercises"
+  add_foreign_key "exercise_questions", "questions"
   add_foreign_key "exercises", "users"
-  add_foreign_key "question_lists", "exercises"
-  add_foreign_key "question_lists", "questions"
   add_foreign_key "questions", "users"
   add_foreign_key "team_exercise_programming_languages", "programming_languages"
   add_foreign_key "team_exercise_programming_languages", "team_exercises"
