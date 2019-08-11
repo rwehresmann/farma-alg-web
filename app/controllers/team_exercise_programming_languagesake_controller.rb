@@ -1,0 +1,2 @@
+class TeamExerciseProgrammingLanguagesakeController < ApplicationController
+end

@@ -18,7 +18,11 @@ Rails.application.routes.draw do
         resources :test_cases, shallow: true
       end
 
-      resources :team_exercises, only: %i[show destroy update]
+      resources :team_exercises, only: %i[show destroy update] do
+        post '/programming_languages/:programming_language_id', to: 'team_exercise_programming_languages#create'
+      end
+
+      resources :team_exercise_programming_languages, only: %i[destroy]
     end
   end
 end
