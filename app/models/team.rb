@@ -11,4 +11,8 @@ class Team < ApplicationRecord
   validates_presence_of :name
   validates :password, presence: true, length: { minimum: 6 }
   validates_inclusion_of :active, in: [true, false]
+
+  # Used just to keep the pattern of policies with two arguments 
+  # (see ClassRoom::EnrollmentPolicy for further details).
+  attr_accessor :received_password
 end

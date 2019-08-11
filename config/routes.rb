@@ -23,6 +23,13 @@ Rails.application.routes.draw do
       end
 
       resources :team_exercise_programming_languages, only: %i[destroy]
+
+      namespace :class_room do
+        scope :enrollment, as: :enrollment do
+          post '/teams/:id', to: 'enrollment#create'
+          delete '/teams/:id', to: 'enrollment#destroy'
+        end
+      end
     end
   end
 end
